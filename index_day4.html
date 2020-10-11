@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+  <section>
+    <div class="container">
+      <div class="title">
+        <img 
+        class="logo" 
+        :src="src"
+        >
+        <h2> {{title}}</h2>
+        <div class="description">
+          <!--如果不是第一天就秀出來 imdex!=0 -->
+          <a class="arrow left" @click="changeIndex(-1)" v-if="index > 0"></a>
+          <div  class="menuItem white" style="transform: scale3d(1.5,1.5,1);">
+          <span class="number"> {{ index+1 }}</span>
+          <span class="type">{{ today.type }}</span>
+          <a  class="title" target="vue-iron" :href="today.link">{{ today.title }}</a>
+        </div>
+         <!--如果不是最後一天就秀出來 imdex!=total -1 -->
+        <a class="arrow right" @click="changeIndex(+1)" v-if="index < total-1"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
+<script>
+  let data = {
+    src:'./images/vue-iron.png',
+    title:'Vue.js 手牽手，一起嗑光全家桶',
+    index:0,
+    menu:[
+      {type:'主廚的話',title:'餐點簡介與相關說明',link:'javascript:;'},
+      {type:'餐具擺盤',title:'萬用白瓷 VS Code 與套裝工具組',link:'javascript:;'},
+      {type:'開胃餐點',title:'中式資料綁定佐無毒 JQuery 畫面處理',link:'javascript:;'},
+      {type:'開胃餐點',title:'古早味事件燉畫面綁定',link:'javascript:;'},
+      {type:'開胃餐點',title:'清爽表單處理佐雙向資料',link:'javascript:;'},
+      {type:'開胃餐點',title:'使用者輸入焗列表呈現',link:'javascript:;'},
+      {type:'開胃餐點',title:'期間限定篩選佐資料轉換',link:'javascript:;'},
+      {type:'開胃餐點',title:'峰峰相連互動式資料表單',link:'javascript:;'}
+    ]
+  };
+
+let vm = new Vue({
+  el:'#app',
+  data:data,
+  computed:{  //資料處理
+    today(){
+      return this.menu[this.index]
+    },
+    total(){
+      return this.menu.length
+    }
+  },
+  method:{
+    changeIndex(change){
+      this.index = (this.index + change + this.total) % this.total; 
+      //+this.menu.length為了防止成為負數
+
+      // this.index+= change;
+      // if(this.index < 0) this.index = 0;
+      // else if(this.index > this.menu.length -1) this.index = this.menu.length - 1;
+    }
+  }
+});
+</script>
+</body>
+</html>

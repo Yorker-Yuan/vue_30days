@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+  <section>
+    <div class="container">
+      <div class="title">
+       <div class="input">{{ name }}，{{gender}}，年齡為{{age}}，<br />位置:{{ position.join('、') }}，{{get?'已':'未'}}成為賽揚獎投手。</div>
+       <div class="menu">
+         <table>
+           <tr>
+             <td class="title">姓名:</td>
+             <td>
+               <input v-model="name" />
+             </td>
+           </tr>
+           <tr>
+            <td class="title">性別:</td>
+            <td>
+              <input type="radio" value="男" v-model="gender" checked />男
+              <input type="radio" v-model="gender" value="女" />女
+            </td>
+           </tr>
+           <tr>
+             <td class="title">年齡:</td>
+             <td>
+               <select v-model="age">
+                 <option>20歲以下</option>
+                 <option>20~25歲</option>
+                 <option>25~30歲</option>
+                 <option>30歲以上</option>
+               </select>
+             </td>
+           </tr>
+           <tr>
+            <td class="title">位置:</td>
+            <td>
+              <input
+               type="checkbox"
+                value="Pitcher" 
+                v-model="position"/>Pitcher
+              <input 
+              type="checkbox" 
+              value="右投右打" 
+              v-model="position"/>右投右打
+              <input 
+              type="checkbox"
+               value="紐約洋基王牌投手" v-model="position" />紐約洋基王牌投手
+            </td>
+           </tr>
+           <tr>
+            <td class="title">稱號:</td>
+            <td>
+              <input type="checkbox" v-model="get"/>賽揚獎投手
+            </td>
+           </tr>
+         </table>
+       </div>
+       
+      </div>
+    </div>
+  </section>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
+<script src="day5.js"></script>
+</body>
+</html>
